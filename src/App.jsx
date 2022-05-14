@@ -2,7 +2,7 @@ import { useState } from "react";
 import io from "socket.io-client";
 import Chat from "./components/Chat";
 
-const socket = io.connect("http://localhost:5000");
+const socket = io.connect("https://harb-chat.herokuapp.com/");
 
 function App() {
   const [username, setUsername] = useState("");
