@@ -37,7 +37,18 @@ const Chat = ({ socket, username, room }) => {
       <div className="bg-indigo-700 text-white px-2 w-full">Live Chat</div>
       <div className="w-full px-2">
         {msgList.map((msg, i) => (
-          <p key={i}>{msg.currentMessage}</p>
+          // <p key={i}>{msg.currentMessage}</p>
+          <div key={i} className={`w-[50%] ${msg.sender === username ? "float-left":"float-right"}`}>
+            <div
+              className={`flex flex-col rounded-sm px-1 ${
+                msg.sender === username ? "bg-indigo-700 text-white" : "bg-indigo-100 text-indigo-900"
+              }`}
+            >
+              <p className={`text-sm border-b capitalize ${msg.sender === username ? "border-b-indigo-300": "border-b-indigo-900"} `}>{msg.sender}</p>
+              <p className="text-sm py-2">{msg.currentMessage}</p>
+            </div>
+            <p className="text-sm text-right text-[12px]">{msg.time}</p>
+          </div>
         ))}
       </div>
       <hr />
@@ -63,5 +74,6 @@ const Chat = ({ socket, username, room }) => {
   );
 };
 
+// const senderStyle = `${msg.sender === username ? "bg-blue-200" : ""}`;
 const chatStyle = `shadow-md container mx-auto sm:w-full lg:w-1/2 my-10 bg-white space-y-5 flex flex-col items-center justify-center`;
 export default Chat;
