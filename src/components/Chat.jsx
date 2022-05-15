@@ -19,6 +19,7 @@ const Chat = ({ socket, username, room }) => {
       };
       setMsgList((list) => [...list, messageData]);
       socket.emit("send_message", messageData);
+      setCurrentMessage("");
     }
   };
 
@@ -45,6 +46,7 @@ const Chat = ({ socket, username, room }) => {
           type="text"
           className="lg:w-[95%] sm:w-full h-[2.5rem] outline-none border px-2 border-indigo-200"
           placeholder="type message"
+          value={currentMessage}
           onChange={(e) => setCurrentMessage(e.target.value)}
           onKeyDown={(e) => {
             e.key === "Enter" && sendMessage();
