@@ -40,7 +40,7 @@ const Chat = ({ socket, username, room }) => {
           // <p key={i}>{msg.currentMessage}</p>
           <div
             key={i}
-            className={`w-[50%] block ${
+            className={`w-[50%] flex flex-col ${
               msg.sender === username ? "mr-auto" : "ml-auto"
             }`}
           >
