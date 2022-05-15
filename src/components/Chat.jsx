@@ -37,7 +37,6 @@ const Chat = ({ socket, username, room }) => {
       <div className="bg-indigo-700 text-white px-2 w-full">Live Chat</div>
       <div className="w-full px-2">
         {msgList.map((msg, i) => (
-          // <p key={i}>{msg.currentMessage}</p>
           <div
             key={i}
             className={`w-[50%] flex flex-col ${

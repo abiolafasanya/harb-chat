@@ -2,7 +2,15 @@ import { useState } from "react";
 import io from "socket.io-client";
 import Chat from "./components/Chat";
 
-const socket = io.connect("https://harb-chat.herokuapp.com/", {
+let socketURI;
+if (process.env.NODE_ENV === "production") {
+  socketURI = "https://harb-chat.herokuapp.com";
+} else {
+  socketURI = "http://localhost:5000";
+}
+
+console.log(socketURI);
+const socket = io.connect(socketURI, {
   withCredentials: true,
   extraHeaders: {
     "my-custom-header": "abcd",
@@ -16,7 +24,7 @@ function App() {
   const [showChat, setShowChat] = useState(false);
   const setUsenameHandler = (e) => {
     setUsername(e.target.value);
-  }
+  };
 
   const setRoomHandler = (e) => {
     setRoom(e.target.value);
@@ -44,13 +52,13 @@ function App() {
           </div>
           <input
             type="text"
-            placeholder="Scott..."
+            placeholder="Enter Username..."
             className="p-2 border rounded shadow-sm w-auto sm:w-full"
             onChange={setUsenameHandler}
           />
           <input
             type="text"
-            placeholder="Jane..."
+            placeholder="Room Name or Room ID"
             value={room}
             className="p-2 border rounded shadow-sm w-auto sm:w-full"
             onChange={setRoomHandler}
